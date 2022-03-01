@@ -111,3 +111,25 @@ test('Visual - Default Condition Widget', async ({ page }) => {
     await page.waitForTimeout(VISUAL_GRACE_PERIOD);
     await percySnapshot(page, 'Default Condition Widget');
 });
+
+test.skip('Visual - Sinewave Generator', async ({ page }) => {
+    //Go to baseURL
+    await page.goto('/', { waitUntil: 'networkidle' });
+
+    //Click the Create button
+    await page.click('button:has-text("Create")');
+
+    // Click text=Sinewave Generator
+    await page.click('text=Sinewave Generator');
+
+    // 
+    await page.waitForTimeout(VISUAL_GRACE_PERIOD);
+    await percySnapshot(page, 'Default Sinewave Generator Form');
+
+    // Click text=OK
+    await page.click('text=OK');
+
+    // Take a snapshot of the newly created Sinewave Generator
+    await page.waitForTimeout(VISUAL_GRACE_PERIOD);
+    await percySnapshot(page, 'Default Condition Widget');
+});
