@@ -112,24 +112,23 @@ test('Visual - Default Condition Widget', async ({ page }) => {
     await percySnapshot(page, 'Default Condition Widget');
 });
 
-test.skip('Visual - Sinewave Generator', async ({ page }) => {
+test.only('Visual - Sine Wave Generator Form', async ({ page }) => {
     //Go to baseURL
     await page.goto('/', { waitUntil: 'networkidle' });
 
     //Click the Create button
     await page.click('button:has-text("Create")');
 
-    // Click text=Sinewave Generator
-    await page.click('text=Sinewave Generator');
+    // Click text=Sine Wave Generator
+    await page.click('text=Sine Wave Generator');
 
-    // 
     await page.waitForTimeout(VISUAL_GRACE_PERIOD);
-    await percySnapshot(page, 'Default Sinewave Generator Form');
+    await percySnapshot(page, 'Default Sine Wave Generator Form');
 
-    // Click text=OK
-    await page.click('text=OK');
+    await page.locator('.field.control.l-input-sm input').first().click();
+    await page.locator('.field.control.l-input-sm input').first().fill('');
 
-    // Take a snapshot of the newly created Sinewave Generator
+    // Validate red x mark
     await page.waitForTimeout(VISUAL_GRACE_PERIOD);
-    await percySnapshot(page, 'Default Condition Widget');
+    await percySnapshot(page, 'removed amplitude property value');
 });
